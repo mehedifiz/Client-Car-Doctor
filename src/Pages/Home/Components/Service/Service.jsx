@@ -3,7 +3,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 const Service = ({service}) => {
   const {title , img , price} = service;
     return (
-        <div className="card bg-base-100 w-96 shadow-md">
+        <div className="card bg-base-100 w-96 sm:w-full shadow-md">
   <figure className="px-10 pt-10">
     <img
       src={img}

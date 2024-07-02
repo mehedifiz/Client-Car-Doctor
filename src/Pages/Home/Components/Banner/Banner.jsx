@@ -8,7 +8,7 @@ import img4 from '../../../../assets/images/banner/4.jpg'
 
 const Banner = () => {
     return (
-        <div className="carousel w-full h-[600px] object-cover rounded-2xl ">
+        <div className="carousel w-full md:h-[600px] object-cover rounded-2xl ">
 
 
 
@@ -18,16 +18,16 @@ const Banner = () => {
           <img
             src={img1}
             className="w-full" />
-           <div className="absolute left-5 right-5 flex -translate-y-1/2 transform bottom-0 justify-end gap-10">
-            <a href="#slide4" className="btn btn-circle">❮</a>
+           <div className=" w-fit absolute  right-5 flex -translate-y-1/2 transform bottom-0 justify-end gap-10">
+            <a href="#slide4" className="btn  btn-circle">❮</a>
             <a href="#slide2" className="btn btn-circle">❯</a>
           </div>
           <div className="absolute left-5 right-5 flex -translate-y-1/2 transform bottom-0  ">
             
-            <div className='text-white space-y-4 w-1/3 pl-12 '>
-                <h2 className='font-bold text-6xl'> Affordable Price For Car Servicing</h2>
+            <div className='text-white space-y-4 w-2/3  lg:w-1/3 pl-12 '>
+                <h2 className='font-bold md:text-6xl text-4xl lg:text-6xl'> Affordable Price For Car Servicing</h2>
                 <p>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
-                <button className='btn  btn-primary mr-6'>Discover More</button>
+                <button className='btn  btn-primary mr-6 '>Discover More</button>
                 <button className='btn btn-outline btn-secondary'>Latest Project</button>
             </div>
           </div>
@@ -39,8 +39,8 @@ const Banner = () => {
             src={img2}
             className="w-full" />
            <div className="absolute left-5 right-5 flex -translate-y-1/2 transform bottom-0 justify-end gap-10">
-            <a href="#slide1" className="btn btn-circle">❮</a>
-            <a href="#slide3" className="btn btn-circle">❯</a>
+            <a href="#slide1" className="btn btn-circle h-7 w-7 ">❮</a>
+            <a href="#slide3" className="btn btn-circle ">❯</a>
           </div>
           <div className="absolute left-5 right-5 flex -translate-y-1/2 transform bottom-0  ">
             

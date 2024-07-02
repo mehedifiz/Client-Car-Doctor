@@ -5,9 +5,9 @@ import parts from '../../../../assets/images/about_us/parts.jpg'
 
 const About = () => {
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-base-100 min-h-screen">
   <div className="hero-content  flex flex-col lg:flex-row">
-    <div className='lg:w-2/3 relative'>
+    <div className='lg:w-2/3 relative mb-20'>
     <img
       src={parson}
       className=" w-[80%] h-fu rounded-lg shadow-2xl " />
