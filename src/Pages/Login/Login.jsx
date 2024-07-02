@@ -1,9 +1,25 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
+import { useContext } from 'react';
+import { Authcontext } from '../../providers/Authprovider';
+import { Result } from 'postcss';
 const Login = () => {
+
+    const{login}= useContext(Authcontext)
 const handleLogin = event =>{
     event.preventDefault();
-    alert()
+    const email = form.email.value;
+    const password = form.password.value;
+
+    login(email , password)
+
+    .then(Result =>{
+        console.log(Result.user)
+    })
+
+    .catch(error =>{
+        console.log(error)
+    })
 
 }
 
@@ -34,7 +50,7 @@ const handleLogin = event =>{
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button type='submit' className="btn btn-primary">Login</button>
+                <button type='submit' className="btn bg-orange-600  text-white hover:bg-orange-800">Login</button>
               </div>
             </form>
 
