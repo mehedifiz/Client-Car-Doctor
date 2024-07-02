@@ -6,22 +6,25 @@ import parts from '../../../../assets/images/about_us/parts.jpg'
 const About = () => {
     return (
         <div className="hero bg-base-200 min-h-screen">
-  <div className="hero-content flex-col lg:flex-row">
-    <div className='lg:w-1/2 relative'>
+  <div className="hero-content  flex flex-col lg:flex-row">
+    <div className='lg:w-2/3 relative'>
     <img
       src={parson}
-      className=" w-3/4 rounded-lg shadow-2xl " />
+      className=" w-[80%] h-fu rounded-lg shadow-2xl " />
        <img
       src={parts}
       className="w-1/2 absolute right-5 top-1/2 borde-8 border-white rounded-lg shadow-2xl" />
     </div>
-    <div>
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
+    <div className='lg:pr-52 sm:px-5'>
+      <h2 className='text-orange-500 font-bold text-xl'>About Us</h2>
+      <h1 className="text-5xl font-bold">We are qualified & of experience in this field</h1>
+      <p className="py-3 space-y-5">
+        PThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. 
       </p>
-      <button className="btn btn-primary">Get Started</button>
+      <p className=''>
+      the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. 
+      </p>
+      <button className="btn mt-5 btn-info bg-orange-600 text-white outline-none ">Get More Info</button>
     </div>
   </div>
 </div>
