@@ -3,14 +3,12 @@ import logo from '../../../../assets/logo.svg'
 const Footer = () => {
     return (
         <footer className="footer bg-base-200 text-base-content p-10">
-        <aside>
+        <aside className='w-52'>
 
             <img src={logo} alt="" />
          
           <p>
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
+          Edwin Diaz is a software and web technologies engineer, a life coach trainer who is also a serial .
           </p>
         </aside>
         <nav>
