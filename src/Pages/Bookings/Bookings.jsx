@@ -9,6 +9,7 @@ const Bookings = () => {
     
 
     const [booking , setBookings] = useState([])
+    const [load , setLoad] = useState(true)
 
 
     const url=`http://localhost:5000/bookings?email=${user.email}`
@@ -19,13 +20,14 @@ const Bookings = () => {
         .then(res => res.json())
         .then(data =>{
             setBookings(data)
+            setLoad(!load)
         })
 
         .catch(e =>{
             console.log(e)
         })
 
-    }, [])
+    }, [load])
 
     return (
         <div>
@@ -34,7 +36,7 @@ const Bookings = () => {
             <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
-    <thead>
+    <thead className="bg-gray-200 text-xl font-light">
       <tr>
         <th>
           <label>
