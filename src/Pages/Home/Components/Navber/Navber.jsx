@@ -1,14 +1,45 @@
 import { Link } from "react-router-dom";
 
 import logo from '../../../../assets/logo.svg'
+import { useContext } from "react";
+import { Authcontext } from "../../../../providers/Authprovider";
+import { toast } from "react-toastify";
 
 const Navber = () => {
+   const {user , logOut} = useContext(Authcontext)
+
+   const handleLogout =()=>{
+    logOut()
+
+
+    .then(data=>{
+      toast.success("LogOut Successfully !", {
+        position: "top-center"
+      });
+    })
+
+    .catch(e => console.log(e))
+   }
+
     const links = <>
        <li><Link to='/'>Home</Link></li>
-       <li><Link to='/register'>Register</Link></li>
-       <li><Link to='/login'>Login</Link></li>
        <li><Link to='/about'>About Us</Link></li>
-    
+       {
+         user ? 
+         <>
+         <li><Link to='/bookings'>My Orders</Link></li>
+         <li><button onClick={handleLogout}>LogOut</button></li>
+         
+         </>
+         
+         
+         : <>
+           <li><Link to='/login'>Login</Link></li>
+         <li><Link to='/register'>Register</Link></li>
+         </>
+
+        
+    }
     
     </>
     return (

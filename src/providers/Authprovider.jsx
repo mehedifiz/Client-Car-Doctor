@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firenase.config";
 
@@ -19,14 +19,19 @@ const login =(email , password)=>{
     setLoading(true)
     return signInWithEmailAndPassword(auth , email , password)
 }
+const logOut = () =>{
+    setLoading(true)
+
+      return signOut(auth)
+    }
 
 
 
 useEffect( ()=>{
    const unsubcribe = onAuthStateChanged(auth , crrruntUser=>{
         setUser(crrruntUser);
-        setLoading(false)
-        console.log(crrruntUser)
+       setLoading(false)
+
     });
     return ()=>{ 
         unsubcribe()
@@ -34,12 +39,15 @@ useEffect( ()=>{
 },[])
 
 
+  
+
 
     const Authinfo = {
         user,
         loading,
         createuser,
-        login
+        login,
+        logOut
     } 
     return (
         <Authcontext.Provider value={Authinfo}>

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Authcontext } from "../../providers/Authprovider";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = () => {
 
@@ -23,6 +25,7 @@ const Checkout = () => {
             price: price,
             service : title,
             service_id : _id,
+            img
             
 
         }
@@ -43,7 +46,13 @@ const Checkout = () => {
 
         .then(res => res.json() )
         .then(data =>{
-            console.log(data)
+          console.log(data)
+          console.log(data.insertedId)
+          if(data.insertedId){
+            toast.info("Your order has been placed!", {
+              position: "top-center"
+            });
+          }
         })
 
         .catch(e =>{
