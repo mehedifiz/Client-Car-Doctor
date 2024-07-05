@@ -55,7 +55,7 @@ const Register = () => {
                 <label className="label">
                   <span className="label-text">confrim Password</span>
                 </label>
-                <input type="confrimPassword" name='confrimPassword' placeholder="confrimPassword" className="input input-bordered" required />
+                <input type="Password" name='confrimPassword' placeholder="confrimPassword" className="input input-bordered" required />
                
               </div>
               <div className="form-control mt-6">

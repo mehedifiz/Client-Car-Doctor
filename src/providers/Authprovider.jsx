@@ -1,6 +1,7 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firenase.config";
+import { GoogleAuthProvider } from "firebase/auth";
 
 
 export const Authcontext = createContext(null)
@@ -25,6 +26,13 @@ const logOut = () =>{
       return signOut(auth)
     }
 
+    const googleProvider = new GoogleAuthProvider();
+
+    const google = ()=>{
+        setLoading(true)
+       return signInWithPopup(auth , googleProvider)
+    }
+
 
 
 useEffect( ()=>{
@@ -47,7 +55,8 @@ useEffect( ()=>{
         loading,
         createuser,
         login,
-        logOut
+        logOut,
+        google
     } 
     return (
         <Authcontext.Provider value={Authinfo}>

@@ -67,7 +67,7 @@ const Navber = () => {
       </ul>
     </div>
     <Link to='/' className="btn btn-ghost text-xl">
-        <img src={logo} alt="Logo" />
+        <img src={logo} className="w-14" alt="Logo" />
     </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -76,7 +76,7 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn btn-outline btn-warning">Appoinment</a>
+    <a className="btn btn-outline btn-sm btn-warning">Appoinment</a>
   </div>
 </div>
     );
