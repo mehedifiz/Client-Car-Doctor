@@ -33,7 +33,7 @@ const Checkout = () => {
         console.log(order)
        
 
-        fetch('http://localhost:5000/bookings',{
+        fetch('https://server-car-doctor.onrender.com',{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -48,6 +48,7 @@ const Checkout = () => {
         .then(data =>{
           console.log(data)
           console.log(data.insertedId)
+          
           if(data.insertedId){
             toast.info("Your order has been placed!", {
               position: "top-center"

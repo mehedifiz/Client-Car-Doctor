@@ -26,8 +26,8 @@ const router = createBrowserRouter([
         },
         {
           path: 'checkout/:id',
-          element:<Checkout></Checkout>,
-          loader: ({params}) =>fetch(`http://localhost:5000/services/${params.id}`)
+          element:<Priveteroute><Checkout></Checkout></Priveteroute>,
+          loader: ({params}) =>fetch(`https://server-car-doctor.onrender.com/services/${params.id}`)
         },{
           path:'/bookings',
           element:<Priveteroute><Bookings></Bookings></Priveteroute>

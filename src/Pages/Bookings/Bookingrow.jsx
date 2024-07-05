@@ -1,7 +1,8 @@
 import React from "react";
 import Swal from "sweetalert2";
 
-const Bookingrow = ({ book }) => {
+const Bookingrow = ({ book ,handeConfirm }) => {
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -13,7 +14,7 @@ const Bookingrow = ({ book }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://server-car-doctor.onrender.com/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -37,7 +38,7 @@ const Bookingrow = ({ book }) => {
     });
   };
 
-    const {service ,_id, email ,img , name , price, date} = book
+    const {service ,_id, email ,img , name , price,status} = book
     return (
 
 
@@ -62,9 +63,9 @@ const Bookingrow = ({ book }) => {
 </button>
         </th>
         <td>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 md:gap-3">
             <div className="avatar">
-              <div className=" rounded w-28">
+              <div className=" rounded md:w-28 w-16">
                { img&& <img
                   src={img}/>}
               </div>
@@ -81,7 +82,7 @@ const Bookingrow = ({ book }) => {
         </td>
         <td>${price}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+         { status =="comfirm"?<span className="btn  bg-orange-600 text-white btn-ghost btn-xs">Confirmed</span> :<button onClick={()=>handeConfirm(_id)} className="btn btn-ghostbtn-xs">Confirm</button>}
         </th>
       </tr>
     );
