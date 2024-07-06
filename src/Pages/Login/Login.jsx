@@ -3,6 +3,7 @@ import img from '../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { Authcontext } from '../../providers/Authprovider';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 const Login = () => {
 
   const location = useLocation()
@@ -18,17 +19,34 @@ const handleLogin = event =>{
     login(email , password)
     
     
-    .then(Result =>{
-      event.target.reset()
-      toast.success("Login Successfully !", {
+    .then(result =>{
+      // event.target.reset()
+      const loggedUser = result.user;
+      console.log(loggedUser)
+      
+
+        const user = {email};
+
+        axios.post('http://localhost:5000/jwt', user, { withCredentials:true})
+        .then(res =>{
+          console.log(res.data)
+          if(res.data.success){
+
+    navigate(location.state? location.state :  '/')
+       toast.success("Login Successfully !", {
         position: "top-center"
       });
-      navigate(location.state? location.state :  '/')
+          }
+        })
+
+     
+
+
 
     })
 
     .catch(error =>{
-        console.log(error)
+        console.log('error : ',error)
     })
 
 }

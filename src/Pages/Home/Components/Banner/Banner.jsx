@@ -8,7 +8,7 @@ import img4 from '../../../../assets/images/banner/4.jpg'
 
 const Banner = () => {
     return (
-        <div className="carousel w-full h-[500px]  object-cover rounded-2xl ">
+        <div className="carousel w-full h-[300px] md:h-[500px] lg:h-[500px] object-cover rounded-2xl ">
 
 
 
@@ -32,7 +32,7 @@ const Banner = () => {
 
                 <h2 className='font-bold md:text-4xl  text-2xl lg:text-6xl'> Affordable Price For Car Servicing</h2>
                 <p>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
-                < div className='flex   flex-col md:flex-row gap-5 lg:flex-row'>                <button className='btn w-24 btn-primary btn-sm mr-6 '>Discover More</button>
+                < div className=''>                <button className='btn w-24 btn-primary btn-sm mr-6 '>Discover More</button>
                 <button className='btn w-24 btn-outline btn-sm btn-secondary'>Latest Project</button>
                 </div>
 

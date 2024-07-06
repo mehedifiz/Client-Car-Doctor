@@ -3,53 +3,85 @@ import { Authcontext } from "../../providers/Authprovider";
 import Bookingrow from "./Bookingrow";
 import Banner2 from "../Home/Components/Banner/Banner2";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Bookings = () => {
     const { user } = useContext(Authcontext);
     const [booking, setBookings] = useState([]);
     const title = 'Cart Details';
 
-    const url = `https://server-car-doctor.onrender.com?email=${user.email}`;
+    const url = `http://localhost:5000/bookings?email=${user.email}`;
 
     useEffect(() => {
-        const fetchBookings = async () => {
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                setBookings(data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchBookings();
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setBookings(data))
     }, [url]);
-
-    const handleConfirm = async (id) => {
-        try {
-            const response = await fetch(`https://server-car-doctor.onrender.com/${id}`, {
-                method: "PATCH",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ status: 'confirm' })
-            });
-
-            const data = await response.json();
-            if (data.modifiedCount > 0) {
-                const updatedBookings = booking.map(book =>
-                    book._id === id ? { ...book, status: 'Confirmed' } : book
-                );
-                setBookings(updatedBookings);
-
-                toast.info("Your order has been confirmed", {
-                    position: "top-center"
+    
+    const handleDelete = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/bookings/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        Swal.fire(
+                            "Deleted!",
+                            "Your booking has been deleted.",
+                            "success"
+                        );
+                        const remaining = booking.filter(booking => booking._id !== id);
+                        setBookings(remaining);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting booking:", error);
+                    Swal.fire(
+                        "Error!",
+                        "There was an issue deleting your booking.",
+                        "error"
+                    );
                 });
             }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        });
+    }
+    
+    
+    const handleConfirm = id => {
+        fetch(`http://localhost:5000/bookings/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'confirm' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    // update state
+                    const remaining = booking.filter(booking => booking._id !== id);
+                    const updated = booking.find(booking => booking._id === id);
+                    updated.status = 'confirm'
+                    const newBookings = [updated, ...remaining];
+                    setBookings(newBookings);
+                    toast.info("Your order has been confirmed", {
+                        position: "top-center"
+                    });
+                }
+            })
+    }
 
     return (
         <div>
@@ -72,6 +104,7 @@ const Bookings = () => {
                                 key={book._id}
                                 book={book}
                                 handleConfirm={handleConfirm}
+                                handleDelete={handleDelete}
                             />
                         ))}
                     </tbody>

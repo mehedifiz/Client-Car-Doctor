@@ -5,12 +5,12 @@ import parts from '../../../../assets/images/about_us/parts.jpg'
 
 const About = () => {
     return (
-        <div className="hero bg-base-100 min-h-[60vh]">
+        <div className="hero bg-base-100 min-h-[100vh]">
   <div className="hero-content  flex flex-col lg:flex-row">
     <div className='lg:w-2/3 relative mb-20'>
     <img
       src={parson}
-      className=" w-[80%] h-fu rounded-lg shadow-2xl " />
+      className=" w-[80%] h-full rounded-lg shadow-2xl " />
        <img
       src={parts}
       className="w-1/2 absolute right-5 top-1/2 borde-8 border-white rounded-lg shadow-2xl" />
