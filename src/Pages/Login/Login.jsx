@@ -1,14 +1,16 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
-import { useContext } from 'react';
-import { Authcontext } from '../../providers/Authprovider';
+// import { useContext } from 'react';
+// import { Authcontext } from '../../providers/Authprovider';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import UseAuth from '../../Hooks/UseAuth';
 const Login = () => {
 
   const location = useLocation()
+  const{login , google}=UseAuth()
 
-    const{login , google}= useContext(Authcontext)
+    // const{login , google}= useContext(Authcontext)
     const navigate = useNavigate()
 const handleLogin = event =>{
     event.preventDefault();

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
 import logo from '../../../../assets/logo.svg'
-import { useContext } from "react";
-import { Authcontext } from "../../../../providers/Authprovider";
+// import { useContext } from "react";
+// import { Authcontext } from "../../../../providers/Authprovider";
 import { toast } from "react-toastify";
+import UseAuth from "../../../../Hooks/UseAuth";
 
 const Navber = () => {
-   const {user , logOut} = useContext(Authcontext)
+   const {user , logOut} = UseAuth();
 
    const handleLogout =()=>{
     logOut()
