@@ -21,8 +21,8 @@ const handleLogin = event =>{
     
     .then(result =>{
       // event.target.reset()
-      const loggedUser = result.user;
-      console.log(loggedUser)
+      const loggedUser = result?.user;
+      // console.log(loggedUser)
       
 
         const user = {email};

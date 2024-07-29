@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firenase.config";
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 
 export const Authcontext = createContext(null)
@@ -36,9 +37,31 @@ const logOut = () =>{
 
 
 useEffect( ()=>{
-   const unsubcribe = onAuthStateChanged(auth , crrruntUser=>{
-        setUser(crrruntUser);
-       setLoading(false)
+   const unsubcribe = onAuthStateChanged(auth , currentUser=>{
+
+    const userEmail = currentUser?.email || user?.email;
+    
+    setUser(currentUser);
+    setLoading(false)
+    
+    const loggedUser ={email: userEmail}
+       if(currentUser){
+       
+        axios.post('http://localhost:5000/',loggedUser , {withCredentials : true})
+
+        .then(res =>{
+            console.log('token res', res.data)
+        })
+         
+       } else{
+                axios.post('http://localhost:5000/logout', loggedUser,{
+                    withCredentials: true
+                } )
+                
+                .then(res=>{
+                     console.log(res.data)
+                })
+       }
 
     });
     return ()=>{ 
