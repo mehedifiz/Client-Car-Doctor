@@ -5,13 +5,15 @@ import Banner2 from "../Home/Components/Banner/Banner2";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxios from "../../Hooks/useAxios";
 
 const Bookings = () => {
   const { user } = useContext(Authcontext);
   const [booking, setBookings] = useState([]);
   const title = 'Cart Details';
+  const axiosSceure = useAxios();
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `/bookings?email=${user?.email}`;
 
   useEffect(() => {
     if (!user) {
@@ -19,10 +21,10 @@ const Bookings = () => {
       return;
     }
 
-    console.log('Fetching bookings for URL:', url);
-    axios.get(url, { withCredentials: true })
+    // console.log('Fetching bookings for URL:', url);
+    axiosSceure.get(url)
       .then(res => {
-        console.log('Response data:', res.data);
+        // console.log('Response data:', res.data);
         setBookings(res.data);
       })
       .catch(e => {
@@ -32,7 +34,7 @@ const Bookings = () => {
     // fetch(url)
     //   .then(res => res.json())
     //   .then(data => setBookings(data));
-  }, [url, user]);
+  }, [url, axiosSceure, user]);
 
   const handleDelete = id => {
     Swal.fire({
